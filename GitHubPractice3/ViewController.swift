@@ -30,7 +30,11 @@ func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> 
 }
 
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    <#code#>
+    let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
+    var content = cell.defaultContentConfiguration()
+   content.text = array[indexPath.row]
+    cell.contentConfiguration = content
+    return cell
 }
 
 }
