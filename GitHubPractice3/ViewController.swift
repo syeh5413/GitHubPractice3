@@ -8,34 +8,34 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource {
-    
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var textField: UITextField!
-    var array = [String]()
+
+    let word = ""
+     @IBOutlet weak var tableView: UITableView!
+     @IBOutlet weak var textField: UITextField!
+     var array = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
+    tableView.dataSource = self
+}
+    func textFieldHandler() -> UIAlertAction {
+        textField.text = word
+        array.append(word)
+        tableView.reloadData()
+        textField.text = ""
     }
     
-    @IBAction func whenButtonPressed(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Pull Item from TextField?", message: nil, preferredStyle: UIAlertController.Style.alert)
-        
-        let yesButton = UIAlertAction(title: "Yes", style: .default, handler: { alert in
-            textFieldHandler()
-        })
-        
-        alert.addAction(yesButton)
-        present(alert, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return array.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
-    }
-    
+func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return array.count
+}
+
+func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
+    var content = cell.defaultContentConfiguration()
+   content.text = array[indexPath.row]
+    cell.contentConfiguration = content
+    return cell
+}
+
 }
 
